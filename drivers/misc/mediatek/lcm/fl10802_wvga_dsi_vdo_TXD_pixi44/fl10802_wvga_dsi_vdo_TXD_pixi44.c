@@ -76,7 +76,9 @@
 
 #if defined(BUILD_LK)
 #include "cust_gpio_usage.h"
-#include <mt-plat/mt_gpio.h>
+#include <platform/mt_gpio.h>
+#include <platform/mt_pmic.h>
+#include <platform/mt_i2c.h>
 #endif
 
 #include "lcm_drv.h"
