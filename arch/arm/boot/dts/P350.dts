@@ -34,20 +34,20 @@
 &odm {
 	led@0 {
 		compatible = "mediatek,red";
-		led_mode = <0>;
-		data = <1>;
+		led_mode = <3>;
+		data = <4>;
 		pwm_config = <0 0 0 0 0>;
 	};
 	led@1 {
 		compatible = "mediatek,green";
-		led_mode = <0>;
-		data = <1>;
+		led_mode = <3>;
+		data = <4>;
 		pwm_config = <0 0 0 0 0>;
 	};
 	led@2 {
 		compatible = "mediatek,blue";
-		led_mode = <0>;
-		data = <1>;
+		led_mode = <3>;
+		data = <4>;
 		pwm_config = <0 0 0 0 0>;
 	};
 	led@3 {
@@ -70,9 +70,9 @@
 	};
 	led@6 {
 		compatible = "mediatek,lcd-backlight";
-		led_mode = <1>;
-		data = <2>;
-		pwm_config = <1 1 0 0 0>;
+		led_mode = <6>;
+		data = <1>;
+		pwm_config = <0 0 0 0 0>;
 	};
 	vibrator0:vibrator@0 {
 		compatible = "mediatek,vibrator";
