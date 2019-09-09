@@ -30,4 +30,5 @@ This is 3.18.x MT6580 kernel source ported to be used on PIXI 4 4 4034
 * [nik-kst (4pda.ru)](https://4pda.ru/forum/index.php?showuser=4052130) [(@nik124seleznev)](https://github.com/nik124seleznev)
 * [Skyrimus (4pda.ru)](https://4pda.ru/forum/index.php?showuser=3927665) [(@Skyrimus)](https://github.com/Skyrimus)
 * [Melek Saidani (Facebook.)](https://www.facebook.com/melek.saidani.12)
+* Yuvraj Saxena [Yuvraj (telegram)](https://t.me/imyuvraj)[(@rad0n)](https://github.com/rad0n)
 
