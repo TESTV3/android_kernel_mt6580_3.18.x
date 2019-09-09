@@ -20,7 +20,8 @@
 	atag,videolfb-islcmfound = <1>;
 	atag,videolfb-fps= <6000>;
 	atag,videolfb-vramSize= <0x01800000>;
-	atag,videolfb-lcmname= "nt35521_hd720_dsi_vdo_rixin";
+	atag,videolfb-lcmname= "ili9806e_wvga_dsi_vdo_Holitech_pixi44 fl10802_wvga_dsi_vdo_TXD_pixi44 hx8379c_wvga_dsi_vdo_TDT_pixi44 jd9161b_wvga_dsi_vdo_TXD_pixi44 jd9161b_wvga_dsi_vdo_Holitech_pixi44";
+
 };
 
 &bus {
@@ -326,7 +327,7 @@
 	/*0--MD_MAX--UP_MAX--DW_MAX*/
 	headset-three-key-threshold = <0 90 240 500>;
 	/*0--MD_MAX--VOICE_MAX--UP_MAX--DW_MAX*/
-	headset-four-key-threshold = <0 60 126 201 450>;
+	headset-four-key-threshold = <0 59 123 195 450>;
 	/* ACCDET GPIO standardization ACC mode use */
 	pinctrl-names = "default", "state_eint_as_int";
 	pinctrl-0 = <&ACCDET_pins_default>;
@@ -347,14 +348,14 @@
 /*ACCDET END*/
 /* TOUCH GPIO standardization */
 &touch {
-	tpd-resolution = <720 1280>;
-	use-tpd-button = <0>;
-	tpd-key-num = <0>;
-	tpd-key-local= <139 172 158 0>;
-	tpd-key-dim-local = <90 883 100 40 230 883 100 40 370 883 100 40 0 0 0 0>;
-	tpd-max-touch-num = <5>;
-	tpd-filter-enable = <1>;
-	tpd-filter-pixel-density = <93>;
+	tpd-resolution = <480 800>;
+	use-tpd-button = <1>;
+	tpd-key-num = <3>;
+	tpd-key-local= <158 172 139 0>;
+	tpd-key-dim-local = <80 900 20 160 240 900 20 160 400 900 20 160 0 0 0 0>;
+	tpd-max-touch-num = <2>;
+	tpd-filter-enable = <0>;
+	tpd-filter-pixel-density = <124>;
 	tpd-filter-custom-prameters = <0 0 0 0 0 0 0 0 0 0 0 0>;
 	tpd-filter-custom-speed = <0 0 0>;
 	pinctrl-names = "default", "state_eint_as_int", "state_eint_output0", "state_eint_output1",
@@ -423,11 +424,56 @@
 	pinctrl-0 = <&AUD_pins_default>;
  	pinctrl-1 = <&AUD_pins_pmicclk_mode0>;
  	pinctrl-2 = <&AUD_pins_pmicclk_mode1>;
-	pinctrl-3 = <&AUD_pins_extamp_high>;
-	pinctrl-4 = <&AUD_pins_extamp_low>;
-	pinctrl-5 = <&AUD_pins_extamp2_high>;
-	pinctrl-6 = <&AUD_pins_extamp2_low>;
  	status = "okay";
+};
+&pio {
+	ctp_pins_default: toucheint5default {
+	};
+	ctp_pins_eint_as_int: toucheint@5 {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO5__FUNC_EINT5>;
+			slew-rate = <0>;
+			bias-disable;
+		};
+	};
+	ctp_pins_eint_output0: eintoutput0 {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO5__FUNC_GPIO5>;
+			slew-rate = <0>;
+			output-low;
+		};
+	};
+	ctp_pins_eint_output1: eintoutput1 {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO5__FUNC_GPIO5>;
+			slew-rate = <1>;
+			output-high;
+		};
+	};
+	ctp_pins_rst_output0: rstoutput0 {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO2__FUNC_GPIO2>;
+			slew-rate = <1>;
+			output-low;
+		};
+	};
+	ctp_pins_rst_output1: rstoutput1 {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO2__FUNC_GPIO2>;
+			slew-rate = <1>;
+			output-high;
+		};
+	};
+};
+/* TOUCH end */
+
+/* AUDIO GPIO standardization */
+&audgpio {
+	pinctrl-names = "default", "audpmicclk-mode0", "audpmicclk-mode1";
+	pinctrl-0 = <&AUD_pins_default>;
+	pinctrl-1 = <&AUD_pins_pmicclk_mode0>;
+	pinctrl-2 = <&AUD_pins_pmicclk_mode1>;
+	status = "okay";
 };
 &pio {
 	AUD_pins_default: audiodefault {
@@ -454,84 +500,8 @@
 			pins = <PINMUX_GPIO27__FUNC_AUD_DAT_MOSI>;
 		};
 	};
-	AUD_pins_extamp_high:extampouthigh {
-
-		pins_cmd_dat {
-			pins = <PINMUX_GPIO15__FUNC_GPIO15>;
-			slew-rate = <1>;
-			output-high;
-		};
-	};
-	AUD_pins_extamp_low:extampoutlow {
-
-		pins_cmd_dat {
-			pins = <PINMUX_GPIO15__FUNC_GPIO15>;
-			slew-rate = <1>;
-			output-low;
-		};
-	};
-	AUD_pins_extamp2_high:extamp2outhigh {
-	};
-	AUD_pins_extamp2_low:extamp2outlow {
-	};
 };
 /* AUDIO end */
-
-/* DISPSYS GPIO standardization */
-&pio {
-
-	mtkfb_pins_mode_te_gpio: mode_te_gpio {
-		pins_cmd_dat {
-			pins = <PINMUX_GPIO68__FUNC_GPIO68>;
-		};
-	};
-
-	mtkfb_pins_mode_te_te: mode_te_te {
-		pins_cmd_dat {
-			pins = <PINMUX_GPIO68__FUNC_DSI_TE>;
-		};
-	};
-
-	mtkfb_pins_lcm_reset0: lcm_rst_out0_gpio {
-		pins_cmd_dat {
-			pins = <PINMUX_GPIO70__FUNC_LCM_RST>;
-			slew-rate = <1>;
-			output-low;
-		};
-	};
-
-	mtkfb_pins_lcm_reset1: lcm_rst_out1_gpio {
-		pins_cmd_dat {
-			pins = <PINMUX_GPIO70__FUNC_LCM_RST>;
-			slew-rate = <1>;
-			output-high;
-		};
-	};
-
-	mtkfb_pins_pwm_test_pin_mux_gpio66: pwm_test_pin_mux_gpio66 {
-		pins_cmd_dat {
-			pins = <PINMUX_GPIO66__FUNC_DISP_PWM>;
-			slew-rate = <1>;
-		};
-	};
-
-	mtkfb_pins_default: mtkfb_default {
-	};
-};
-
-&mtkfb {
-	pinctrl-names = "default", "mode_te_gpio", "mode_te_te",
-			"lcm_rst_out0_gpio", "lcm_rst_out1_gpio",
-			"pwm_test_pin_mux_gpio66";
-	pinctrl-0 = <&mtkfb_pins_default>;
-	pinctrl-1 = <&mtkfb_pins_mode_te_gpio>;
-	pinctrl-2 = <&mtkfb_pins_mode_te_te>;
-	pinctrl-3 = <&mtkfb_pins_lcm_reset0>;
-	pinctrl-4 = <&mtkfb_pins_lcm_reset1>;
-	pinctrl-5 = <&mtkfb_pins_pwm_test_pin_mux_gpio66>;
-	status = "okay";
-};
-/* DISPSYS GPIO standardization end */
 /* CAMERA GPIO standardization */
 &pio {
 	camera_pins_cam0_rst0: cam0@0 {
@@ -653,6 +623,8 @@
 			pins = <PINMUX_GPIO75__FUNC_GPIO75>;
 		};
 	};
+
+
 };
 &kd_camera_hw1 {
 	pinctrl-names = "default", "cam0_rst0", "cam0_rst1", "cam0_pnd0", "cam0_pnd1",
@@ -679,20 +651,19 @@
 	pinctrl-16 = <&camera_pins_cam_mclk2_disable>;
 
 	status = "okay";
-
 };
 /* CAMERA GPIO end */
 
 /* CONSYS GPIO standardization */
 &pio {
-	consys_pins_default: consys_default {
+	consys_pins_default: default {
 
 	};
 
 	gpslna_pins_init: gpslna@0 {
 
 		pins_cmd_dat {
-			pins = <PINMUX_GPIO21__FUNC_GPIO21>;
+			pins = <PINMUX_GPIO69__FUNC_GPIO69>;
 			slew-rate = <0>;
 			bias-disable;
 			output-low;
@@ -702,7 +673,7 @@
 	gpslna_pins_oh: gpslna@1 {
 
 		pins_cmd_dat {
-			pins = <PINMUX_GPIO21__FUNC_GPIO21>;
+			pins = <PINMUX_GPIO69__FUNC_GPIO69>;
 			slew-rate = <1>;
 			output-high;
 		};
@@ -711,7 +682,7 @@
 	gpslna_pins_ol: gpslna@2 {
 
 		pins_cmd_dat {
-			pins = <PINMUX_GPIO21__FUNC_GPIO21>;
+			pins = <PINMUX_GPIO69__FUNC_GPIO69>;
 			slew-rate = <1>;
 			output-low;
 		};
