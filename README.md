@@ -1,10 +1,14 @@
-This is 3.18.x MT6580 kernel source ported to be used on DEXP Ixion P350.
+This is 3.18.x MT6580 kernel source ported to be used on PIXI 4 4 4034
 
 ## Known information
 | Subsystem | Driver name | Availability | Working |
 |-----------|-------------|--------------|---------|
-| LCM driver | `nt35521_hd720_dsi_vdo_rixin` | Yes | Yes |
-| Touch panel | `GT9XX (i2c 1-005D)` | Yes | Yes |
+| LCM driver | `ili9806e_wvga_dsi_vdo_Holitech_pixi44` | Yes | Yes |
+| LCM driver | `fl10802_wvga_dsi_vdo_TXD_pixi44` | Yes | Yes |
+| LCM driver | `hx8379c_wvga_dsi_vdo_TDT_pixi44` | Yes | Yes |
+| LCM driver | `jd9161b_wvga_dsi_vdo_TXD_pixi44` | Yes | Yes |
+| LCM driver | `jd9161b_wvga_dsi_vdo_Holitech_pixi44` | Yes | Yes |
+| Touch panel | `GT9XX (i2c 1-005D)` | YES |NO |
 | GPU | `Mali-400 MP` | Yes | Yes |
 | Camera #1 | `imx219_mipi_raw` | Yes | Yes |
 | Camera #2 | `gc2755_mipi_raw` | Yes | Yes |
